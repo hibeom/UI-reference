@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/screenListFragment">
+
+    <fragment
+        android:id="@+id/pieChartFragment"
+        android:name="com.pinkcloud.uireferences.screens.piechart.PieChartFragment"
+        android:label="fragment_pie_chart"
+        tools:layout="@layout/fragment_pie_chart" />
+    <fragment
+        android:id="@+id/screenListFragment"
+        android:name="com.pinkcloud.uireferences.ScreenListFragment"
+        android:label="fragment_screen_list"
+        tools:layout="@layout/fragment_screen_list" >
+        <action
+            android:id="@+id/action_screenListFragment_to_pieChartFragment"
+            app:destination="@id/pieChartFragment" />
+    </fragment>
+</navigation>
