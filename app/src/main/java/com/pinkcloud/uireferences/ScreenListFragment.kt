@@ -28,8 +28,8 @@ class ScreenListFragment : Fragment() {
         val screenList = arrayListOf(
             Screen(
                 1,
-                getString(R.string.pie_chart),
-                getString(R.string.pie_chart),
+                getString(R.string.dial_view),
+                getString(R.string.dial_view),
                 ScreenListFragmentDirections.actionScreenListFragmentToPieChartFragment()
             )
         )

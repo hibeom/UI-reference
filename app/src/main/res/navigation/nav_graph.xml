@@ -7,9 +7,9 @@
 
     <fragment
         android:id="@+id/pieChartFragment"
-        android:name="com.pinkcloud.uireferences.screens.piechart.PieChartFragment"
+        android:name="com.pinkcloud.uireferences.screens.dialview.DialFragment"
         android:label="fragment_pie_chart"
-        tools:layout="@layout/fragment_pie_chart" />
+        tools:layout="@layout/fragment_dial" />
     <fragment
         android:id="@+id/screenListFragment"
         android:name="com.pinkcloud.uireferences.ScreenListFragment"

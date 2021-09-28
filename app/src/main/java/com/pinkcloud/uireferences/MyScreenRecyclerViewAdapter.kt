@@ -8,10 +8,6 @@ import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
 import com.pinkcloud.uireferences.databinding.FragmentScreenBinding
 
-/**
- * [RecyclerView.Adapter] that can display a [PlaceholderItem].
- * TODO: Replace the implementation with code for your data type.
- */
 class MyScreenRecyclerViewAdapter(
     private val values: List<Screen>,
     private val navController: NavController
