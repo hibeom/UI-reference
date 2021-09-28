@@ -4,6 +4,11 @@ import android.content.Context
 import android.graphics.*
 import android.util.AttributeSet
 import android.view.View
+import android.view.accessibility.AccessibilityNodeInfo
+import androidx.core.content.withStyledAttributes
+import androidx.core.view.AccessibilityDelegateCompat
+import androidx.core.view.ViewCompat
+import androidx.core.view.accessibility.AccessibilityNodeInfoCompat
 import com.pinkcloud.uireferences.R
 import kotlin.math.cos
 import kotlin.math.min
@@ -13,7 +18,15 @@ private enum class FanSpeed(val label: Int) {
     OFF(R.string.fan_off),
     LOW(R.string.fan_low),
     MEDIUM(R.string.fan_medium),
-    HIGH(R.string.fan_high)
+    HIGH(R.string.fan_high);
+
+    fun next() = when (this) {
+        OFF -> LOW
+        LOW -> MEDIUM
+        MEDIUM -> HIGH
+        HIGH -> OFF
+    }
+
 }
 
 private const val RADIUS_OFFSET_LABEL = 30
@@ -25,6 +38,7 @@ class DialView @JvmOverloads constructor(
 
     private var radius = 0.0f
     private var fanSpeed = FanSpeed.OFF
+
     // position variable which will be used to draw label and indicator circle position
     private val pointPosition: PointF = PointF(0.0f, 0.0f)
     private val paint = Paint(Paint.ANTI_ALIAS_FLAG).apply {
@@ -34,12 +48,16 @@ class DialView @JvmOverloads constructor(
         typeface = Typeface.create("", Typeface.BOLD)
     }
 
+    private var fanSpeedLowColor = 0
+    private var fanSpeedMediumColor = 0
+    private var fanSpeedMaxColor = 0
+
     override fun onSizeChanged(w: Int, h: Int, oldw: Int, oldh: Int) {
         radius = (min(width, height) / 2.0 * 0.8).toFloat()
     }
 
     private fun PointF.computeXYForSpeed(pos: FanSpeed, radius: Float) {
-        val startAngle = Math.PI * (9/8.0)
+        val startAngle = Math.PI * (9 / 8.0)
         val angle = startAngle + pos.ordinal * (Math.PI / 4)
         x = (radius * cos(angle)).toFloat() + width / 2
         // radius * sin(angle) < 0, then y is less then height / 2, that means
@@ -49,14 +67,19 @@ class DialView @JvmOverloads constructor(
 
     override fun onDraw(canvas: Canvas) {
         // Draw the dial
-        paint.color = if (fanSpeed == FanSpeed.OFF) Color.GRAY else Color.GREEN
-        canvas.drawCircle((width/2).toFloat(), (height/2).toFloat(), radius, paint)
+        paint.color = when (fanSpeed) {
+            FanSpeed.OFF -> Color.GRAY
+            FanSpeed.LOW -> fanSpeedLowColor
+            FanSpeed.MEDIUM -> fanSpeedMediumColor
+            FanSpeed.HIGH -> fanSpeedMaxColor
+        }
+        canvas.drawCircle((width / 2).toFloat(), (height / 2).toFloat(), radius, paint)
 
         // Draw the indicator circle
         val markerRadius = radius + RADIUS_OFFSET_INDICATOR
         pointPosition.computeXYForSpeed(fanSpeed, markerRadius)
         paint.color = Color.BLACK
-        canvas.drawCircle(pointPosition.x, pointPosition.y, radius/12, paint)
+        canvas.drawCircle(pointPosition.x, pointPosition.y, radius / 12, paint)
 
         // Draw the text labels
         val labelRadius = radius + RADIUS_OFFSET_LABEL
@@ -65,5 +88,49 @@ class DialView @JvmOverloads constructor(
             val label = resources.getString(i.label)
             canvas.drawText(label, pointPosition.x, pointPosition.y, paint)
         }
+    }
+
+    init {
+        isClickable = true
+
+        context.withStyledAttributes(attrs, R.styleable.DialView) {
+            fanSpeedLowColor = getColor(R.styleable.DialView_fanColor1, 0)
+            fanSpeedMediumColor = getColor(R.styleable.DialView_fanColor2, 0)
+            fanSpeedMaxColor = getColor(R.styleable.DialView_fanColor3, 0)
+        }
+
+        updateContentDescription()
+
+        ViewCompat.setAccessibilityDelegate(this, object: AccessibilityDelegateCompat() {
+            override fun onInitializeAccessibilityNodeInfo(
+                host: View,
+                info: AccessibilityNodeInfoCompat
+            ) {
+                super.onInitializeAccessibilityNodeInfo(host, info)
+                val customClick = AccessibilityNodeInfoCompat.AccessibilityActionCompat(
+                    AccessibilityNodeInfo.ACTION_CLICK,
+                    if (fanSpeed == FanSpeed.HIGH) {
+                        context.getString(R.string.reset)
+                    } else {
+                        context.getString(R.string.change)
+                    }
+                )
+                info.addAction(customClick)
+            }
+        })
+    }
+
+    override fun performClick(): Boolean {
+        if (super.performClick()) return true
+
+        fanSpeed = fanSpeed.next()
+        updateContentDescription()
+
+        invalidate()
+        return true
+    }
+
+    fun updateContentDescription() {
+        contentDescription = resources.getString(fanSpeed.label)
     }
 }
