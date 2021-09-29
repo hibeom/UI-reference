@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <variable
+            name="donutViewModel"
+            type="com.pinkcloud.uireferences.screens.donutview.DonutViewModel" />
+    </data>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".screens.donutview.DonutFragment">
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/donut_view"
+                    android:layout_width="@dimen/donut_width"
+                    android:layout_height="@dimen/donut_width"
+                    android:layout_marginVertical="@dimen/donut_top_margin"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/mission_list_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintTop_toBottomOf="@id/donut_view"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
+
+                <com.google.android.material.floatingactionbutton.FloatingActionButton
+                    android:id="@+id/add_mission_fab"
+                    android:layout_width="@dimen/create_mission_button_width"
+                    android:layout_height="@dimen/create_mission_button_width"
+                    app:layout_constraintBottom_toBottomOf="@id/donut_view"
+                    app:layout_constraintStart_toEndOf="@id/donut_view"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    android:backgroundTint="@color/toss_blue_4"
+                    android:src="@drawable/ic_add"
+                    android:onClick="@{() -> donutViewModel.insertMission()}"
+                    android:layout_marginBottom="@dimen/create_mission_button_margin_bottom"/>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </ScrollView>
+
+    </FrameLayout>
+</layout>

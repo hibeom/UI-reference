@@ -31,6 +31,12 @@ class ScreenListFragment : Fragment() {
                 getString(R.string.dial_view),
                 getString(R.string.dial_view),
                 ScreenListFragmentDirections.actionScreenListFragmentToPieChartFragment()
+            ),
+            Screen(
+                2,
+                getString(R.string.donut_view),
+                getString(R.string.donut_view),
+                ScreenListFragmentDirections.actionScreenListFragmentToDonutFragment()
             )
         )
 

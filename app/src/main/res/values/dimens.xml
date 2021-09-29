@@ -1,4 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <dimen name="text_margin">16dp</dimen>
+    <dimen name="donut_width">250dp</dimen>
+    <dimen name="donut_top_margin">52dp</dimen>
+    <dimen name="create_mission_button_width">56dp</dimen>
+    <dimen name="create_mission_button_margin_bottom">12dp</dimen>
+    <dimen name="mission_icon_width">24dp</dimen>
+    <dimen name="mission_icon_margin">24dp</dimen>
+    <dimen name="mission_icon_margin_vertical">18dp</dimen>
 </resources>

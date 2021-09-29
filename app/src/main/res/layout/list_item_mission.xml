@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <variable
+            name="missionItem"
+            type="com.pinkcloud.uireferences.screens.donutview.MissionItem" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/icon_view"
+            android:layout_width="@dimen/mission_icon_width"
+            android:layout_height="@dimen/mission_icon_width"
+            android:layout_marginHorizontal="@dimen/mission_icon_margin"
+            android:layout_marginVertical="@dimen/mission_icon_margin_vertical"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.App.CornerSize25Percent"
+            android:background="@{missionItem.color}"/>
+
+        <TextView
+            android:id="@+id/name_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/MissionTextView"
+            android:layout_marginLeft="@dimen/mission_icon_margin"
+            app:layout_constraintStart_toEndOf="@id/icon_view"
+            android:text="@{@string/generic_text(missionItem.missionName)}"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            style="@style/MissionTextView"
+            android:layout_marginRight="@dimen/mission_icon_margin"
+            android:layout_marginLeft="@dimen/mission_icon_margin"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:text="@{@string/amount_text(missionItem.amount)}"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

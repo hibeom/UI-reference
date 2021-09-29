@@ -7,4 +7,12 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+
+    <color name="toss_blue_5">#1B64DA</color>
+    <color name="toss_blue_4">#3D6AFE</color>
+    <color name="toss_blue_3">#3182F6</color>
+    <color name="toss_blue_2">#4593FC</color>
+    <color name="toss_blue_1">#C2D3E4</color>
+    <color name="toss_blue_0">#DDEBFC</color>
+
 </resources>

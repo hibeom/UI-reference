@@ -5,6 +5,7 @@
 
     <string name="pie_chart">Pie Chart</string>
     <string name="dial_view">DialView</string>
+    <string name="donut_view">DonutView</string>
 
     <string name="fan_off">off</string>
     <string name="fan_low">1</string>
@@ -13,4 +14,7 @@
 
     <string name="change">Change</string>
     <string name="reset">Reset</string>
+
+    <string name="generic_text">%s</string>
+    <string name="amount_text">%s 원</string>
 </resources>
