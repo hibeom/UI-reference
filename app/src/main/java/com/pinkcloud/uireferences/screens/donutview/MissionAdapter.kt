@@ -17,7 +17,7 @@ class MissionAdapter: ListAdapter<MissionItem, MissionAdapter.ViewHolder>(Missio
         holder.bind(getItem(position))
     }
 
-    class ViewHolder(private val binding: ListItemMissionBinding): RecyclerView.ViewHolder(binding.root) {
+    class ViewHolder(val binding: ListItemMissionBinding): RecyclerView.ViewHolder(binding.root) {
         fun bind(missionItem: MissionItem) {
             binding.missionItem = missionItem
             binding.executePendingBindings()
