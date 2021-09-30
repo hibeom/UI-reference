@@ -5,9 +5,10 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.pinkcloud.uireferences.database.Mission
 import com.pinkcloud.uireferences.databinding.ListItemMissionBinding
 
-class MissionAdapter: ListAdapter<MissionItem, MissionAdapter.ViewHolder>(MissionItemDiffCallback()) {
+class MissionAdapter(val onDelete: (Int) -> Unit): ListAdapter<MissionItem, MissionAdapter.ViewHolder>(MissionItemDiffCallback()) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         return ViewHolder.from(parent)
@@ -32,6 +33,11 @@ class MissionAdapter: ListAdapter<MissionItem, MissionAdapter.ViewHolder>(Missio
         }
     }
 
+    fun deleteItem(position: Int) {
+        val mission = getItem(position)
+        onDelete(mission.missionId)
+    }
+
     class MissionItemDiffCallback: DiffUtil.ItemCallback<MissionItem>() {
         override fun areItemsTheSame(oldItem: MissionItem, newItem: MissionItem): Boolean {
             return oldItem.missionId == newItem.missionId
@@ -42,5 +48,4 @@ class MissionAdapter: ListAdapter<MissionItem, MissionAdapter.ViewHolder>(Missio
         }
 
     }
-
 }

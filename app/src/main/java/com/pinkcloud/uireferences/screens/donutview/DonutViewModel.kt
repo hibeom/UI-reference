@@ -29,9 +29,9 @@ class DonutViewModel(
         }
     }
 
-    fun deleteMission(mission: Mission) {
+    fun deleteMission(id: Int) {
         viewModelScope.launch {
-            databaseDao.delete(mission)
+            databaseDao.deleteById(id)
         }
     }
 

@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.RecyclerView
 import com.pinkcloud.uireferences.R
 import com.pinkcloud.uireferences.database.AppDatabase
+import com.pinkcloud.uireferences.database.Mission
 import com.pinkcloud.uireferences.databinding.FragmentDonutBinding
 
 class DonutFragment : Fragment() {
@@ -31,7 +32,7 @@ class DonutFragment : Fragment() {
         viewModel = ViewModelProvider(this, donutViewModelFactory).get(DonutViewModel::class.java)
         binding.donutViewModel = viewModel
 
-        val adapter = MissionAdapter()
+        val adapter = MissionAdapter { id -> viewModel.deleteMission(id) }
         binding.missionListView.adapter = adapter
 
         viewModel.missionList.observe(viewLifecycleOwner, {

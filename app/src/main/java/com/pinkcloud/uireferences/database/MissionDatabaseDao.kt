@@ -12,6 +12,9 @@ interface MissionDatabaseDao {
     @Delete
     suspend fun delete(mission: Mission)
 
+    @Query("DELETE FROM mission_table WHERE mission_id = :id")
+    suspend fun deleteById(id: Int)
+
     @Update
     suspend fun update(mission: Mission)
 
