@@ -37,6 +37,8 @@ class DonutFragment : Fragment() {
 
         viewModel.missionList.observe(viewLifecycleOwner, {
             adapter.submitList(it)
+            // TODO update DonutView
+
         })
 
         val swipeHelperCallback = SwipeHelperCallback()
