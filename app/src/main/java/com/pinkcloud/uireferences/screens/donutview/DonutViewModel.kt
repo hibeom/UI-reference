@@ -18,9 +18,15 @@ class DonutViewModel(
     private val _missionList = databaseDao.getAllMission()
     val missionList: LiveData<List<MissionItem>> = Transformations.map(_missionList) {
         it.map { mission ->
-            val color: Int = Color.argb(255, (0..255).random(), (0..255).random(), (0..255).random())
-            MissionItem(mission.missionId!!, mission.missionName, mission.amount, color) }
+            var color: Int = Color.argb(255, (0..255).random(), (0..255).random(), (0..255).random())
+            itemColors.get(mission.missionId)?.let {
+                color = it
+            }
+            itemColors.put(mission.missionId!!, color)
+            MissionItem(mission.missionId, mission.missionName, mission.amount, color) }
     }
+
+    private val itemColors = mutableMapOf<Int, Int>()
 
     fun insertMission() {
         viewModelScope.launch {

@@ -25,26 +25,53 @@ class DonutView @JvmOverloads constructor(
     }
     private lateinit var oval: RectF
 
+    var missionItems = listOf<MissionItem>()
+        set(items) {
+            field = items
+            for (item in items) {
+                val paint = Paint(Paint.ANTI_ALIAS_FLAG).apply {
+                    style = Paint.Style.FILL
+                    color = item.color
+                }
+                itemPaints.put(item.missionId, paint)
+            }
+            invalidate()
+        }
+    private var itemPaints = mutableMapOf<Int, Paint>()
+
     override fun onSizeChanged(w: Int, h: Int, oldw: Int, oldh: Int) {
         radius = (w/2).toFloat()
         innerRadius = ((h/4).toFloat())
 
-        Log.d("devlog", "left: $left, width: $width, right: $right, top: $top")
         oval = RectF(0f, 0f, width.toFloat(), height.toFloat())
     }
 
     override fun onDraw(canvas: Canvas) {
-        Log.d("devlog", "measuredWidth: $measuredWidth")
         // cx is based on DonutView's left, that means cx should not be (width/2).toFloat() + left
         val cx = (width/2).toFloat()
         val cy = (height/2).toFloat()
-        canvas.drawCircle(cx, cy, radius, paint)
 
-        val paint0 = Paint(Paint.ANTI_ALIAS_FLAG).apply {
-            style = Paint.Style.FILL
-            color = Color.BLUE
+        canvas.run {
+            drawCircle(cx, cy, radius, paint)
+
+            val totalAmount = getTotalAmount(missionItems)
+            var lastAngle = 0f
+            for (missionItem in missionItems) {
+                val ratioAngle = (missionItem.amount.toFloat() / totalAmount)*360f
+                val paint = itemPaints.get(missionItem.missionId)
+                drawArc(oval, lastAngle, ratioAngle, true, paint!!)
+                lastAngle += ratioAngle
+            }
+
+            drawCircle(cx, cy, innerRadius, innerPaint)
         }
-        canvas.drawArc(oval, 0f, 90f, true, paint0)
-        canvas.drawCircle(cx, cy, innerRadius, innerPaint)
+    }
+
+    private fun getTotalAmount(missionItems: List<MissionItem>): Int {
+        var sum = 0
+        for (mission in missionItems) {
+            sum += mission.amount
+        }
+        return sum
     }
 }

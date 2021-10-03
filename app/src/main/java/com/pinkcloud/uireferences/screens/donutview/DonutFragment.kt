@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.RecyclerView
 import com.pinkcloud.uireferences.R
@@ -37,13 +38,16 @@ class DonutFragment : Fragment() {
 
         viewModel.missionList.observe(viewLifecycleOwner, {
             adapter.submitList(it)
-            // TODO update DonutView
-
+            binding.donutView.missionItems = it
         })
 
         val swipeHelperCallback = SwipeHelperCallback()
         val itemTouchHelper = ItemTouchHelper(swipeHelperCallback)
         itemTouchHelper.attachToRecyclerView(binding.missionListView)
+
+        binding.arrowBackView.setOnClickListener {
+            findNavController().popBackStack()
+        }
 
         return binding.root
     }
