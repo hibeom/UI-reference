@@ -6,6 +6,7 @@
     <string name="pie_chart">Pie Chart</string>
     <string name="dial_view">DialView</string>
     <string name="donut_view">DonutView</string>
+    <string name="credit_score_view">CreditScoreView</string>
 
     <string name="fan_off">off</string>
     <string name="fan_low">1</string>

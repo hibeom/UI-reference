@@ -37,6 +37,12 @@ class ScreenListFragment : Fragment() {
                 getString(R.string.donut_view),
                 getString(R.string.donut_view),
                 ScreenListFragmentDirections.actionScreenListFragmentToDonutFragment()
+            ),
+            Screen(
+                3,
+                getString(R.string.credit_score_view),
+                getString(R.string.credit_score_view),
+                ScreenListFragmentDirections.actionScreenListFragmentToCreditFragment()
             )
         )
 
@@ -45,7 +51,8 @@ class ScreenListFragment : Fragment() {
                 columnCount <= 1 -> LinearLayoutManager(context)
                 else -> GridLayoutManager(context, columnCount)
             }
-            adapter = MyScreenRecyclerViewAdapter(screenList, this@ScreenListFragment.findNavController())
+            adapter =
+                MyScreenRecyclerViewAdapter(screenList, this@ScreenListFragment.findNavController())
         }
 
         return binding.root

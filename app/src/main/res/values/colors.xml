@@ -16,4 +16,6 @@
     <color name="toss_blue_1">#C2D3E4</color>
     <color name="toss_blue_0">#DDEBFC</color>
 
+    <color name="credit_color_0">#b92b27</color>
+    <color name="credit_color_1">#1565C0</color>
 </resources>

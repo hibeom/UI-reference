@@ -21,10 +21,18 @@
         <action
             android:id="@+id/action_screenListFragment_to_donutFragment"
             app:destination="@id/donutFragment" />
+        <action
+            android:id="@+id/action_screenListFragment_to_creditFragment"
+            app:destination="@id/creditFragment" />
     </fragment>
     <fragment
         android:id="@+id/donutFragment"
         android:name="com.pinkcloud.uireferences.screens.donutview.DonutFragment"
         android:label="fragment_donut"
         tools:layout="@layout/fragment_donut" />
+    <fragment
+        android:id="@+id/creditFragment"
+        android:name="com.pinkcloud.uireferences.screens.credit.CreditFragment"
+        android:label="fragment_credit"
+        tools:layout="@layout/fragment_credit" />
 </navigation>
