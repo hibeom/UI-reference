@@ -8,6 +8,7 @@
     <color name="black">#FF121212</color>
     <color name="white">#FFFFFFFF</color>
     <color name="red">#F03030</color>
+    <color name="gray">#FF424242</color>
 
     <color name="toss_blue_5">#1B64DA</color>
     <color name="toss_blue_4">#3D6AFE</color>

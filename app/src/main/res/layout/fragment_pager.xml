@@ -10,7 +10,17 @@
         android:id="@+id/tab_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toTopOf="parent"/>
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_margin="8dp"
+        app:tabMode="fixed"
+        app:tabGravity="fill"
+        app:tabIndicatorGravity="stretch"
+        app:tabSelectedTextColor="@color/white"
+        app:tabTextColor="@color/toss_blue_5"
+        app:tabIndicatorColor="@color/gray"
+        app:tabIndicatorAnimationMode="linear"
+        android:background="@drawable/tab_layout_background"
+        app:tabIndicator="@drawable/tab_indicator"/>
 
     <androidx.viewpager2.widget.ViewPager2
         android:id="@+id/pager"

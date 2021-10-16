@@ -106,7 +106,6 @@ class CreditScoreView @JvmOverloads constructor(
     private fun startAnimation() {
         GlobalScope.launch(Dispatchers.Main) {
             delay(200)
-            Log.d("devlog", "start animation")
             val animator = ValueAnimator.ofInt(165, (165 + (score/1000f)*210).toInt()).apply {
                 duration = 800
                 interpolator = LinearInterpolator()
