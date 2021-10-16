@@ -2,7 +2,8 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/tools">
+    android:id="@+id/tools"
+    app:startDestination="@id/customLayoutFragment">
 
     <fragment
         android:id="@+id/pieChartFragment"
@@ -23,6 +24,9 @@
         <action
             android:id="@+id/action_screenListFragment_to_creditFragment"
             app:destination="@id/creditFragment" />
+        <action
+            android:id="@+id/action_screenListFragment_to_customLayoutFragment"
+            app:destination="@id/customLayoutFragment" />
     </fragment>
     <fragment
         android:id="@+id/donutFragment"
@@ -34,5 +38,10 @@
         android:name="com.pinkcloud.uireferences.screens.credit.CreditFragment"
         android:label="fragment_credit"
         tools:layout="@layout/fragment_credit" />
+    <fragment
+        android:id="@+id/customLayoutFragment"
+        android:name="com.pinkcloud.uireferences.screens.viewgroup.CustomLayoutFragment"
+        android:label="fragment_custom_layout"
+        tools:layout="@layout/fragment_custom_layout" />
 
 </navigation>

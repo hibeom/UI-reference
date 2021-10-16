@@ -26,4 +26,5 @@
     <string name="title_suggest">추천</string>
     <string name="title_account">계좌</string>
     <string name="title_contact">연락처</string>
+    <string name="custom_viewgroup">Custom ViewGroup</string>
 </resources>

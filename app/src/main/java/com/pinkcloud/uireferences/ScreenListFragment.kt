@@ -43,6 +43,12 @@ class ScreenListFragment : Fragment() {
                 getString(R.string.credit_score_view),
                 getString(R.string.credit_score_view),
                 ScreenListFragmentDirections.actionScreenListFragmentToCreditFragment()
+            ),
+            Screen(
+                4,
+                getString(R.string.custom_viewgroup),
+                getString(R.string.custom_viewgroup),
+                ScreenListFragmentDirections.actionScreenListFragmentToCustomLayoutFragment()
             )
         )
 
