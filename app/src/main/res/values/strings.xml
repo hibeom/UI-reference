@@ -19,4 +19,11 @@
     <string name="generic_text">%s</string>
     <string name="amount_text">%s 원</string>
     <string name="delete">삭제</string>
+    <string name="cd_tools">Tools</string>
+    <string name="title_tools">Tools</string>
+    <string name="cd_pager">Pager</string>
+    <string name="title_pager">Pager</string>
+    <string name="title_suggest">추천</string>
+    <string name="title_account">계좌</string>
+    <string name="title_contact">연락처</string>
 </resources>

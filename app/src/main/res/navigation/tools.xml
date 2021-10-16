@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/tools">
+
+    <fragment
+        android:id="@+id/pieChartFragment"
+        android:name="com.pinkcloud.uireferences.screens.dialview.DialFragment"
+        android:label="fragment_pie_chart"
+        tools:layout="@layout/fragment_dial" />
+    <fragment
+        android:id="@+id/screenListFragment"
+        android:name="com.pinkcloud.uireferences.ScreenListFragment"
+        android:label="fragment_screen_list"
+        tools:layout="@layout/fragment_screen_list" >
+        <action
+            android:id="@+id/action_screenListFragment_to_pieChartFragment"
+            app:destination="@id/pieChartFragment" />
+        <action
+            android:id="@+id/action_screenListFragment_to_donutFragment"
+            app:destination="@id/donutFragment" />
+        <action
+            android:id="@+id/action_screenListFragment_to_creditFragment"
+            app:destination="@id/creditFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/donutFragment"
+        android:name="com.pinkcloud.uireferences.screens.donutview.DonutFragment"
+        android:label="fragment_donut"
+        tools:layout="@layout/fragment_donut" />
+    <fragment
+        android:id="@+id/creditFragment"
+        android:name="com.pinkcloud.uireferences.screens.credit.CreditFragment"
+        android:label="fragment_credit"
+        tools:layout="@layout/fragment_credit" />
+
+</navigation>
