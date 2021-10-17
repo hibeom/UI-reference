@@ -24,4 +24,15 @@
             <enum name="right" value="2"/>
         </attr>
     </declare-styleable>
+
+    <declare-styleable name="StarView">
+        <attr name="android:checked"/>
+        <attr name="starColor" format="color"/>
+    </declare-styleable>
+
+    <declare-styleable name="RatingView">
+        <attr name="maxRating" format="integer"/>
+        <attr name="rating" format="integer"/>
+        <attr name="android:color"/>
+    </declare-styleable>
 </resources>

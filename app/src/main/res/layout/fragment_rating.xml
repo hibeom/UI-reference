@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".screens.rating.RatingFragment">
+
+    <com.pinkcloud.uireferences.screens.rating.RatingView
+        android:layout_gravity="center"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:color="@color/black"
+        app:rating="3"/>
+
+<!--    <LinearLayout-->
+<!--        android:layout_gravity="center"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:orientation="horizontal">-->
+
+<!--        <com.pinkcloud.uireferences.screens.rating.StarView-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:checked="true"-->
+<!--            app:starColor="@color/black"/>-->
+<!--        <com.pinkcloud.uireferences.screens.rating.StarView-->
+<!--            android:layout_width="24dp"-->
+<!--            android:layout_height="24dp"-->
+<!--            android:checked="true"-->
+<!--            app:starColor="@color/black"/>-->
+<!--        <com.pinkcloud.uireferences.screens.rating.StarView-->
+<!--            android:layout_width="24dp"-->
+<!--            android:layout_height="24dp"-->
+<!--            app:starColor="@color/black"/>-->
+<!--        <com.pinkcloud.uireferences.screens.rating.StarView-->
+<!--            android:layout_width="24dp"-->
+<!--            android:layout_height="24dp"-->
+<!--            app:starColor="@color/black"/>-->
+<!--        <com.pinkcloud.uireferences.screens.rating.StarView-->
+<!--            android:layout_width="24dp"-->
+<!--            android:layout_height="24dp"-->
+<!--            app:starColor="@color/black"/>-->
+<!--    </LinearLayout>-->
+
+</FrameLayout>

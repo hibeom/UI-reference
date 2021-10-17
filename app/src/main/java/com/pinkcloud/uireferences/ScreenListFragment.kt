@@ -49,7 +49,13 @@ class ScreenListFragment : Fragment() {
                 getString(R.string.custom_viewgroup),
                 getString(R.string.custom_viewgroup),
                 ScreenListFragmentDirections.actionScreenListFragmentToCustomLayoutFragment()
-            )
+            ),
+            Screen(
+                5,
+                getString(R.string.rating_view),
+                getString(R.string.rating_view),
+                ScreenListFragmentDirections.actionScreenListFragmentToRatingFragment()
+            ),
         )
 
         with(binding.list) {
