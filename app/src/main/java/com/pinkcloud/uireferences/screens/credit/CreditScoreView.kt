@@ -9,13 +9,14 @@ import android.view.View
 import android.view.animation.LinearInterpolator
 import com.pinkcloud.uireferences.R
 import kotlinx.coroutines.*
+import kotlin.coroutines.CoroutineContext
 import kotlin.math.cos
 import kotlin.math.log10
 import kotlin.math.sin
 
 class CreditScoreView @JvmOverloads constructor(
     context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0
-) : View(context, attrs, defStyleAttr) {
+) : View(context, attrs, defStyleAttr), CoroutineScope {
 
     var score = 0
         set(value) {
@@ -34,6 +35,8 @@ class CreditScoreView @JvmOverloads constructor(
     private val gradientPositions = floatArrayOf(150 / 360f, 360 / 360f)
 
     private lateinit var oval: RectF
+
+    override val coroutineContext = Dispatchers.Main + SupervisorJob()
 
     private var arcPaint = Paint(Paint.ANTI_ALIAS_FLAG).apply {
         style = Paint.Style.STROKE
@@ -71,6 +74,11 @@ class CreditScoreView @JvmOverloads constructor(
         startAnimation()
     }
 
+    override fun onDetachedFromWindow() {
+        super.onDetachedFromWindow()
+        coroutineContext.cancel()
+    }
+
     override fun onSizeChanged(w: Int, h: Int, oldw: Int, oldh: Int) {
         radius = (w / 2.5f)
         smallRadius = (w / 30f)
@@ -104,7 +112,7 @@ class CreditScoreView @JvmOverloads constructor(
     }
 
     private fun startAnimation() {
-        GlobalScope.launch(Dispatchers.Main) {
+        launch {
             delay(200)
             val animator = ValueAnimator.ofInt(165, (165 + (score/1000f)*210).toInt()).apply {
                 duration = 800
@@ -124,4 +132,5 @@ class CreditScoreView @JvmOverloads constructor(
         val blue = 39 + ((192 - 39)*degree)
         return Color.rgb(red.toInt(), green.toInt(), blue.toInt())
     }
+
 }
