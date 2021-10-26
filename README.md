@@ -117,7 +117,7 @@ var score = 0
 ```
 ```kotlin
 private fun startAnimation() {
-    GlobalScope.launch(Dispatchers.Main) {
+    launch {
         delay(200)
         val animator = ValueAnimator.ofInt(165, (165 + (score/1000f)*210).toInt()).apply {
             duration = 800
